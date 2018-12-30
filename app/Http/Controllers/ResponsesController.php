@@ -57,4 +57,46 @@ class ResponsesController extends Controller
     public function setResponseCookie() {
         return response('Hello')->cookie('name', 'value');
     }
+
+    public function redirectTarget($val = null) {
+        dump($val);
+        return view('form');
+    }
+
+    /**
+     * redirect 各種基本用法
+     * 
+     * @return $this|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function return_redirect() {
+        /**
+         * redirect route
+         */
+        return redirect('form');
+
+        /**
+         * redirect 上一頁 把舊的input帶上
+         */
+        return back()->withInput();
+
+        /**
+         * redirect to name route
+         */
+        return redirect()->route('redirectTarget');
+
+        /**
+         * redirect to name route + 變數
+         */
+        return redirect()->route('redirectTarget', ['val' => 123]);
+
+        /**
+         * redirect to controller@function + 變數
+         */
+        return redirect()->action('ResponsesController@redirectTarget', ['val' => 123]);
+
+        /**
+         * return to route 附加 seesion
+         */
+        return redirect('form')->with('add_value', 'this is add_value');
+    }
 }
