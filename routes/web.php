@@ -14,3 +14,13 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+/*
+|--------------------------------------------------------------------------
+| return response 基本用法
+|--------------------------------------------------------------------------
+*/
+Route::get('回應物件', 'ResponsesController@return_response');
+Route::get('回應附加header', 'ResponsesController@addResponseHeader');
+Route::get('回應重設header', 'ResponsesController@setResponseHeader');
+Route::get('回應復加cookie', 'ResponsesController@setResponseCookie');
