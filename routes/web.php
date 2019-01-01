@@ -32,3 +32,19 @@ Route::get('回應復加cookie', 'ResponsesController@setResponseCookie');
 */
 Route::get('form/{val?}', 'ResponsesController@redirectTarget')->name('redirectTarget');
 Route::post('提交表單然後重導', 'ResponsesController@return_redirect')->name('post_target');
+
+/*
+|--------------------------------------------------------------------------
+| return response 其他回應類型
+|--------------------------------------------------------------------------
+*/
+//view 回應
+Route::get('ViewResponse', 'ResponsesController@ViewResponse');
+//Josn 回應
+Route::get('JSONResponse', 'ResponsesController@JSONResponse');
+//Jsonp 回應
+Route::get('JSONPResponse', 'ResponsesController@JSONPResponse');
+//下載 回應
+Route::get('DownloadResponse', 'ResponsesController@DownloadResponse');
+//瀏覽檔案 回應
+Route::get('FileResponse', 'ResponsesController@FileResponse');

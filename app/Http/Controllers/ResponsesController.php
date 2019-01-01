@@ -65,7 +65,7 @@ class ResponsesController extends Controller
 
     /**
      * redirect 各種基本用法
-     * 
+     *
      * @return $this|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function return_redirect() {
@@ -98,5 +98,78 @@ class ResponsesController extends Controller
          * return to route 附加 seesion
          */
         return redirect('form')->with('add_value', 'this is add_value');
+    }
+
+
+    /**
+     * return view
+     * @return \Illuminate\Http\Response
+     */
+    public function ViewResponse() {
+        return response()->view('welcome');
+    }
+
+    /**
+     * 回傳json
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function JSONResponse() {
+        return response()->json([
+            'value1' => 213,
+            'value2' => 456
+        ]);
+    }
+
+    /**
+     * 回傳josnp
+     *
+     * @param Request $request
+     * @return $this
+     */
+    public function JSONPResponse(Request $request) {
+        return response()->json([
+            'value1' => 213,
+            'value2' => 456
+        ])->withCallback($request->input('callback'));
+    }
+
+    /**
+     * 下載回應
+     *
+     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+     */
+    public function DownloadResponse() {
+        $file_path = storage_path('app/public/test_file.pdf');
+
+        /**
+         * 普通下載回應
+         */
+        return response()->download($file_path);
+
+        /**
+         * 重新命名 下載回應
+         */
+        return response()->download($file_path, 'new_test_file.pdf');
+
+        /**
+         * 下載後刪除
+         */
+//        return response()->download($file_path)->deleteFileAfterSend(true);
+    }
+
+    /**
+     * 瀏覽檔案回應
+     *
+     * @return mixed
+     */
+    public function FileResponse() {
+        $file_path = storage_path('app/public/test_file.pdf');
+        return response()->file($file_path);
+
+        /**
+         * 設定header
+         */
+        return response()->file($pathToFile, $headers);
     }
 }
