@@ -48,3 +48,10 @@ Route::get('JSONPResponse', 'ResponsesController@JSONPResponse');
 Route::get('DownloadResponse', 'ResponsesController@DownloadResponse');
 //瀏覽檔案 回應
 Route::get('FileResponse', 'ResponsesController@FileResponse');
+
+/*
+|--------------------------------------------------------------------------
+| 自己定義一個response
+|--------------------------------------------------------------------------
+*/
+Route::get('CustomerResponse', 'ResponsesController@CustomerResponse');

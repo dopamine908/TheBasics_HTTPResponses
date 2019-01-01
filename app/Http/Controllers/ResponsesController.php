@@ -172,4 +172,13 @@ class ResponsesController extends Controller
          */
         return response()->file($pathToFile, $headers);
     }
+
+    /**
+     * return 一個自己定義的 response
+     * @return mixed
+     */
+    public function CustomerResponse() {
+        $value = 'ABCabc';
+        return response()->CustomerResponse($value);
+    }
 }
